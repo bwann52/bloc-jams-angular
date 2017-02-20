@@ -6,7 +6,8 @@
          * @type {Object}
          */
          var SongPlayer = {};
-         var currentSong = null;
+         
+        SongPlayer.currentSong = null;
         
         /**
          * @desc Buzz object audio file
@@ -22,7 +23,7 @@
         var setSong = function(song) {
             if (currentBuzzObject) {
                 currentBuzzObject.stop();
-                currentSong.playing = null;
+                SongPlayer.currentSong.playing = null;
             }
 
             currentBuzzObject = new buzz.sound(song.audioUrl, {
@@ -30,7 +31,7 @@
                 preload: true
             });
 
-            currentSong = song;
+            SongPlayer.currentSong = song;
         };
         
         var playSong = function(song) {
@@ -40,7 +41,8 @@
         
         //public methods with SongPlayer.method        
         SongPlayer.play = function(song) {
-            if (currentSong !== song) {
+            song = song || SongPlayer.currentSong;
+            if (SongPlayer.currentSong !== song) {
              setSong(song);
              playSong(song);
 
@@ -48,6 +50,7 @@
          }
 
         SongPlayer.pause = function(song) {
+         song = song || SongPlayer.currentSong;
          currentBuzzObject.pause();
          song.playing = false;
         };
