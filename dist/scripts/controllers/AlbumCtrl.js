@@ -1,11 +1,10 @@
 (function() {
-     function AlbumCtrl() {
-         this.albumData = [];
-         this.albumdata.push(angular.copy(albumPicasso))
+     function AlbumCtrl(Fixtures) {
+//         Inject the custom service into the AlbumCtrl
+         this.albumData = Fixtures.getAlbum();
      }
  
      angular
          .module('blocJams')
-         .controller('AlbumCtrl', AlbumCtrl);
+         .controller('AlbumCtrl', ['Fixtures', AlbumCtrl]);
  })();
-
