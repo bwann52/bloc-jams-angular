@@ -46,34 +46,34 @@
             song.playing = true;
         }
         
-        //public methods with SongPlayer.method        
-        SongPlayer.play = function(song) {// blue
-                        console.log("this is:" + song)
-
-            song = song || SongPlayer.currentSong;
-                        console.log("song has been set to:" + song)
-
+        /**
+         * @function play
+         * @desc Play current or new song
+         * @param {Object} song
+         */       
+        SongPlayer.play = function(song) {
+             song = song || SongPlayer.currentSong;
             
-//            console.log(SongPlayer.currentSong)
-            
-            if (SongPlayer.currentSong !== song) {
-             setSong(song);
-             playSong(song);
-//             currentSong = null;
-            } else {
-                // you need something here, so you don't have to start the song from the beginning
-                playSong(song)
-            }       
-         }
+             if (SongPlayer.currentSong !== song) {
+                 setSong(song);
+                 playSong(song);
+             } else if (SongPlayer.currentSong === song) {
+                 if (currentBuzzObject.isPaused()) {
+                     playSong(song);
+                 }
+            }
+         };
 
-        SongPlayer.pause = function(song) {
-            console.log("this is:" + song)
-         song = song || SongPlayer.currentSong; // null -- you clicker the actual song || you click player bard
-         
-            console.log("song has been set to:" + song)
-            currentBuzzObject.pause();
-         song.playing = false;
-        }
+         /**
+         * @function pause
+         * @desc Pause current song
+         * @param {Object} song
+         */
+         SongPlayer.pause = function(song) {
+             song = song || SongPlayer.currentSong;
+             currentBuzzObject.pause();
+             song.playing = false;
+        };
         
         SongPlayer.previous = function() {
              var currentSongIndex = getSongIndex(SongPlayer.currentSong);
