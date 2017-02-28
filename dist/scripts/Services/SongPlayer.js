@@ -1,12 +1,19 @@
 (function() {
-    function SongPlayer() {
+    function SongPlayer(Fixtures) {
          
         /**
          * @desc songPlayer service??
          * @type {Object}
          */
          var SongPlayer = {};
+        
+         var currentAlbum = Fixtures.getAlbum();
+        
+        var getSongIndex = function(song) {
+         return currentAlbum.songs.indexOf(song);
+        };
          
+        
         SongPlayer.currentSong = null;
         
         /**
@@ -66,6 +73,19 @@
             console.log("song has been set to:" + song)
             currentBuzzObject.pause();
          song.playing = false;
+        }
+        
+        SongPlayer.previous = function() {
+             var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+             currentSongIndex--;
+            if (currentSongIndex < 0) {
+             currentBuzzObject.stop();
+             SongPlayer.currentSong.playing = null;
+            }else {
+             var song = currentAlbum.songs[currentSongIndex];
+             setSong(song);
+             playSong(song);
+            }
         };
         
         return SongPlayer;
@@ -73,5 +93,5 @@
  
      angular
          .module('blocJams')
-         .factory('SongPlayer', SongPlayer);
+         .factory('SongPlayer', ['$rootScope', 'Fixtures', SongPlayer]);
  })();
