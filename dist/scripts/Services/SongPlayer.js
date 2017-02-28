@@ -40,18 +40,31 @@
         }
         
         //public methods with SongPlayer.method        
-        SongPlayer.play = function(song) {
+        SongPlayer.play = function(song) {// blue
+                        console.log("this is:" + song)
+
             song = song || SongPlayer.currentSong;
+                        console.log("song has been set to:" + song)
+
+            
+//            console.log(SongPlayer.currentSong)
+            
             if (SongPlayer.currentSong !== song) {
              setSong(song);
              playSong(song);
-
-            }        
+//             currentSong = null;
+            } else {
+                // you need something here, so you don't have to start the song from the beginning
+                playSong(song)
+            }       
          }
 
         SongPlayer.pause = function(song) {
-         song = song || SongPlayer.currentSong;
-         currentBuzzObject.pause();
+            console.log("this is:" + song)
+         song = song || SongPlayer.currentSong; // null -- you clicker the actual song || you click player bard
+         
+            console.log("song has been set to:" + song)
+            currentBuzzObject.pause();
          song.playing = false;
         };
         
