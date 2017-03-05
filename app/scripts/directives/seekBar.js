@@ -51,6 +51,14 @@
                          $document.unbind('mouseup.thumb');
                      });
                  };
+                 
+                 //assignment, where is the thumb?
+                 scope.thumbStyle = function() {
+                     return {left: percentString()};
+                 };
+                 
+                 
+                 
              }
         };
          
