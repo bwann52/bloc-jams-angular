@@ -9,12 +9,12 @@
         
         
         //when calling another function from service, do not use ()?
-         var currentAlbum = Fixtures.getAlbum;
+        console.log(Fixtures);
+         var currentAlbum = Fixtures.getAlbum();
         
         
         var getSongIndex = function(song) {
-            console.log(currentAlbum);
-//             return currentAlbum.songs.indexOf(song);
+            return currentAlbum.songs.indexOf(song);
          };
          
         
@@ -115,5 +115,5 @@
  
      angular
          .module('blocJams')
-         .factory('SongPlayer', ['$rootScope', 'Fixtures', SongPlayer]);
+         .factory('SongPlayer', ['Fixtures', SongPlayer]);
  })();
