@@ -8,8 +8,6 @@
          var SongPlayer = {};
         
         
-        //when calling another function from service, do not use ()?
-        console.log(Fixtures);
          var currentAlbum = Fixtures.getAlbum();
         
         
