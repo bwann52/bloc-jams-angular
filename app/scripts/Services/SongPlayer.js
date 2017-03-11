@@ -15,7 +15,7 @@
             return currentAlbum.songs.indexOf(song);
          };
          
-        
+//        SongPlayer.currentAlbum = currentAlbum;    
         SongPlayer.currentSong = null;
         
         /**
